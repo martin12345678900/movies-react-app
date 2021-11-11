@@ -1,0 +1,68 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixin';
+.HomeWrapper {
+    height: 40rem;
+}
+
+.Home {
+    height: 100%;
+    padding: 0;
+    background: $main-color;
+    position: relative;
+    background-image: url("https://th.bing.com/th/id/R.9e67f7c0a7d3e355cfe1250a95892cb8?rik=JUqT09OJhKp7Kg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2ff%2f1%2fb%2f375459.jpg&ehk=mrYhUQdCzYz0oMBpkC28eSvD3pG3lzHHjHr8Oe3xmj8%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left 10% top 0%;
+}
+
+.HomeDetails {
+    margin-top: 2rem;
+    padding-left: 0.5rem;
+    animation: animationOnForum 1.2s ease-out;
+    position: absolute;
+    bottom: 15%;
+    left: .2%;
+    font-weight: bold;
+    &__title {
+        font-size: 4.5rem;
+        color: $my-color;
+        margin-bottom: 1.2rem;
+        display: block;
+    }
+    &__description {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        color: $my-color;
+        display: block;
+    }
+}
+
+@media all and (max-width: 800px) {
+    .Home {
+        height: 80%;
+        background-position: left 45% top 0%;
+    }
+    .HomeDetails {
+        &__title {
+            font-size: 3rem;
+        }
+        &__description {
+            font-size: 1rem;
+        }
+    }
+}
+
+@keyframes animationOnForum {
+    0% {
+        opacity: 0;
+        transform: translateY(-240px);
+    }
+    75% {
+        opacity: 0.7;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

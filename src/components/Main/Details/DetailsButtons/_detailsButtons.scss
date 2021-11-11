@@ -1,0 +1,67 @@
+@import '../../../../styles/variables';
+.ButtonsWrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.User {
+    &__btn {
+        margin: 3rem 0.5rem 0 1rem;
+        cursor: pointer;
+    }
+    &__like {
+        border-radius: 6px;
+        padding: 0.8rem 1.4rem;
+        font-size: $main-font;
+        position: relative;
+        left: 0;
+        bottom: -8px;
+        background-color: cadetblue;
+        border: none;
+    }
+    &__add {
+        margin-left: 1.5rem;
+        padding: 1rem 1.6rem;
+        width: 100px;
+        height: 4.5rem;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        background-color: black;
+        color: $my-color;
+        position: relative;
+        left: 0;
+        bottom: -5px;
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+.Owner {
+    &__btn {
+        margin: 3rem 0.5rem 0 1rem;
+        cursor: pointer;
+    }
+    &__delete {
+        background: red;
+        color: $my-color;
+        border: none;
+        padding: 1.2rem 1.8rem;
+        font-size: 1.8rem;
+        border-radius: 0.6rem;
+        text-decoration: none;
+    }
+    &__edit {
+        text-decoration: none;
+        border: none;
+        padding: 1.2rem 2.2rem;
+        border-radius: 0.6rem;
+        font-size: 1.8rem;
+        background-color: thistle;
+        color: $main-color;
+    }
+}

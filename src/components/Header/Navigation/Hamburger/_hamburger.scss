@@ -1,0 +1,10 @@
+@import '../../../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+.hamburger {
+    display: none;
+}
+
+@media all and (max-width: 920px) {
+    .hamburger {
+        display: block;
+    }
+}

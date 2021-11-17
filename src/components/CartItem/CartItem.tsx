@@ -15,11 +15,9 @@ type ChangeType = "INCREASE" | "DECREASE";
 const CartItem: React.FC<Item> = React.memo((props) => {
     const updateMutation = useUpdateCartItem();
     const deleteMutation = useDeleteCartItem();
-
-    if (props.quantity === 0) {
-        deleteMutation.mutate(props._id);
-    }
-
+    
+    const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
+    
     const onChangeQuantityClickHandler = (type: ChangeType) => {
         const currentItemQuantity = props.quantity;
         updateMutation.mutate({
@@ -31,7 +29,9 @@ const CartItem: React.FC<Item> = React.memo((props) => {
         });
     }
 
-    const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
+    if (props.quantity === 0) {
+        onDeleteCartItemClickHandler();
+    }
     
     return (
         <div className={classes.item}>

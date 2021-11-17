@@ -1,17 +1,16 @@
 import React from 'react';
 
 type ImageProps = {
-    imageSrc: string;
+    src: string;
     alt: string;
     className?: string;
 }
-
-const Image: React.FC<ImageProps> = ({ imageSrc, alt, className }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, className }) => {
     return (
         <img
-            src={imageSrc}
-            alt={alt}
             className={className}
+            src={src}
+            alt={alt}
         />
     )
 }

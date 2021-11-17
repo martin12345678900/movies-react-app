@@ -1,0 +1,44 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.CartSection {
+  width: 100%;
+  height: 100%;
+  background: #d70040;
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+}
+.Cart {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  padding: 1.5rem;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.Summary {
+  width: 40%;
+  height: 45%;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-left: 2rem;
+  padding-left: 1rem;
+  &__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  &__totalItems {
+    font-size: 2rem;
+    color: grey;
+  }
+  &__totalPrice {
+    font-size: 3rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 1rem;
+  }
+}

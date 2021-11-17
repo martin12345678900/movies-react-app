@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'react';
+import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+import { WritableDraft } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
 
 import { UserAuthSliceState, UserAuth, UserDataObjType} from './auth-slice.types';
 
@@ -16,11 +16,11 @@ const authSlice = createSlice({
     name: 'auth-slice',
     initialState: defaultAuthState,
     reducers: {
-        handleLogout(state) {
+        handleLogout(state: WritableDraft<UserAuthSliceState>) {
             state.userAuthState = defaultAuthState.userAuthState;
             state.isAuthenticated = defaultAuthState.isAuthenticated;
         },
-        handleSign(state, { payload }: PayloadAction<UserAuth>) {
+        handleSign(state: WritableDraft<UserAuthSliceState>, { payload }: PayloadAction<UserAuth>) {
             state.isAuthenticated = true;
             state.userAuthState = {
                 accessToken: payload.accessToken,
@@ -31,11 +31,12 @@ const authSlice = createSlice({
     }
 });
 
+const baseAuthURL = 'https://cars-react-app-server.herokuapp.com/users';
 
 export const authThunk = ({ user, endpoint }: { user: UserDataObjType; endpoint: string;}) => {
-    return async (dispatch: Dispatch<PayloadAction<UserAuth>>): Promise<void> => {
+    return async (dispatch: Dispatch): Promise<void> => {
         try {
-            const res = await fetch(`https://cars-react-app-server.herokuapp.com/users/${endpoint.toLowerCase()}`, {
+            const res = await fetch(`${baseAuthURL}/${endpoint.toLowerCase()}`, {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: { "Content-Type": "application/json" }
@@ -50,6 +51,16 @@ export const authThunk = ({ user, endpoint }: { user: UserDataObjType; endpoint:
     }
 }
 
-export const { handleLogout, handleSign } = authSlice.actions;
+export const logoutThunk = () => {
+    return async (dispatch: Dispatch): Promise<void> => {
+        try {
+            await fetch(`${baseAuthURL}/logout`);
+
+            dispatch(authSlice.actions.handleLogout());
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
 
 export default authSlice.reducer;

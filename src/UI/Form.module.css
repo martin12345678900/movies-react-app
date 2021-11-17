@@ -1,0 +1,68 @@
+.formwrapper {
+    padding-left: 1.5rem;
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(16px 16px 20px #D70040);
+    filter: brightness(2px);
+}
+
+.formwrapper form {
+    width: 50%;
+    height: 82.5vh;
+    background: url("https://nayainsurancetax.com/wp-content/uploads/2019/01/insurance-quote-form-background-fontana-ca.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.formwrapper .formwrappertitle {
+    font-size: 3.5rem;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+}
+
+.formwrapper form input, textarea {
+    display: block;
+    width: 95%;
+    margin-bottom: 2rem;
+    height: 6%;
+    padding: 1rem;
+    background-color: rgb(46, 43, 43);
+    color: white;
+    font-size: 1.6rem;
+    outline: none;
+    border-radius: 8px; 
+}
+
+.formwrapper form textarea {
+    height: 10%;
+}
+
+.formwrapper form button {
+    margin-top: 3rem;
+    font-size: 1.8rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgb(46, 43, 43);;
+    color: white;
+    border: 1px solid white;
+}
+
+.formwrapper form button:hover {
+    cursor: pointer;
+    background: white;
+    color: rgb(46, 43, 43);
+}
+
+@media all and (max-width: 767px) {
+    .formwrapper {
+        padding-left: 0;
+    }
+    .formwrapper form {
+        width: 100%;
+    }
+}

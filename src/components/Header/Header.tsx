@@ -1,13 +1,14 @@
+import React from 'react';
 import Logo from './Logo/Logo';
 import Navigation from './Navigation/Navigation';
 
-import './_header.scss';
+import classes from './Header.module.css';
 
-function Header() {
+const Header: React.FC<{ setSearchParam: React.Dispatch<React.SetStateAction<string>>}> = ({ setSearchParam }) => {
     return (
-        <header className="Header">
+        <header className={classes.header}>
             <Logo />
-            <Navigation />
+            <Navigation setSearchParam={setSearchParam} />
         </header>
     );
 }

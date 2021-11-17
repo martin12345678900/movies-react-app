@@ -1,0 +1,47 @@
+.item {
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  margin: 2rem;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  height: 30%;
+  position: relative;
+}
+
+.cartimg {
+  height: 100%;
+  width: 25%;
+  position: absolute;
+  left: 10%;
+}
+
+.carttitle {
+  position: absolute;
+  left: 36%;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.actions {
+  position: absolute;
+  left: 65%;
+}
+
+.cartprice {
+  font-size: 3rem;
+  font-weight: bold;
+  position: absolute;
+  left: 90%;
+}
+.action {
+  border: 3px solid black;
+  border-radius: 100px;
+  padding: 0.5rem;
+}
+
+.actions span {
+  font-size: 4.5rem;
+  margin: 0 1.5rem;
+}

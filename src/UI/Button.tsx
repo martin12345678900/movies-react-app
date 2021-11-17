@@ -1,20 +1,20 @@
 import React from 'react';
 
-type ButtonProps = {
+export type ButtonProps = {
+    type?: "submit" | "button" | "reset";
+    onClick?: () => void;
+    disabled?: boolean;
     textContent: string;
-    className: string;
-    type: "button" | "submit" | "reset";
-    onClickHandler?: () => void;
-    isDisabled?: boolean;
+    className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ textContent, className, type, onClickHandler, isDisabled }) => {
+const Button: React.FC<ButtonProps> = ({ type, onClick, disabled, textContent, className }) => {
     return (
         <button
             className={className}
             type={type}
-            onClick={onClickHandler}
-            disabled={isDisabled}
+            onClick={onClick}
+            disabled={disabled}
         >
             {textContent}
         </button>

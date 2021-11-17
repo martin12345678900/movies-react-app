@@ -1,0 +1,41 @@
+.heading {
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 4.5rem 0;
+  color: #b7b7cc;
+  text-shadow: -1px -1px 1px #ffffff, 1px 1px 1px #000000;
+  transition: all 0.8s ease-out;
+}
+
+.heading:hover {
+  transform: scale(1.2);
+  cursor: default;
+}
+
+.cardwrapper {
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 2rem 2rem 2rem;
+}
+
+.notfound {
+  text-align: center;
+}
+.notfound h1 {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 3.5rem;
+}
+
+.notfound .sadicon {
+  display: inline-block;
+}
+
+@media all and (max-width: 750px) {
+  .cardwrapper {
+    display: block;
+  }
+}

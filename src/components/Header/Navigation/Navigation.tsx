@@ -1,57 +1,70 @@
-import React, { Fragment, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useCallback, useContext, useEffect, useState} from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { BsFillCartFill }  from 'react-icons/bs';
+import { ImSearch } from 'react-icons/im';
 
-import { handleLogout } from '../../../store/auth-slice';
+import { logoutThunk } from '../../../store/auth-slice';
 
-import './_navigation.scss';
+import classes from './Navigation.module.css';
 
 import Hamburger from './Hamburger/Hamburger';
 import { useAppDispatch, useAppSelector  } from '../../../store';
-import useGetCart from '../../hooks/react-query-hooks/cart/useGetCart';
-import Loader from '../../Loader/Loader';
+import useGetCart from '../../../hooks/react-query-hooks/cart/useGetCart';
+import Input from '../../../UI/Input';
+import { CartType } from '../../../services/requests';
 
-const Navigation = () => {
-    const { data: items, isLoading } = useGetCart();
+const activeStyle = {
+    color: '#D70040'
+}
+const Navigation: React.FC<{ setSearchParam: React.Dispatch<React.SetStateAction<string>>}> = ({ setSearchParam }) => {
+    const { data: cartItems } = useGetCart();
+
     const [isActive, setIsActive] = useState(false);
 
     const isAuthenticated = useAppSelector(state => state.isAuthenticated);
     const dispatch = useAppDispatch();
 
     const toogleActiveState = useCallback(() => setIsActive(prevActiveState => !prevActiveState), []);
-    const onLogout = () => dispatch(handleLogout());
+    const onLogout = () => dispatch(logoutThunk());
 
-    if (isLoading) {
-        return <Loader />;
-    }
+    const cartItemsQuantity = cartItems?.reduce((acc: number, value: CartType) => acc += +value.quantity, 0);
 
     return (
         <>
-            <nav className="Nav">
-                <ul className={`Nav__list ${isActive ? `Nav__list--active` : `Nav__list--unactive`}`}>
+            <nav className={classes.nav}>
+                <ul className={`${classes.navlist} ${isActive ? `${classes.active}` : `${classes.unactive}`}`}>
                     {
                         isAuthenticated
                             ?
                             <Fragment>
                                 <li>
-                                    <Link to="/cart">Cart {items.reduce((itemAcc, item) => itemAcc += item.quantity, 0)}</Link>
+                                    <NavLink activeStyle={activeStyle} to="/cart">
+                                        <BsFillCartFill fontSize={18}/> {cartItemsQuantity}
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/movies/create">Create Movie Article</Link>
+                                    <NavLink activeStyle={activeStyle} to="/movies/create">Create Movie Article</NavLink>
                                 </li>
                                 <li>
                                     <Link to="/" onClick={onLogout}>Logout</Link>
                                 </li>
                                 <li>
-                                    <Link to="/filter">Search Movies</Link>
+                                    <Input 
+                                        type="text" 
+                                        onChange={e => setSearchParam(e.target.value)}
+                                        placeholder="Search..."
+                                        className={classes.search}
+                                    />
+                                    <ImSearch fontSize={15} className={classes.icon}/>
                                 </li>
                             </Fragment>
                             :
                             <Fragment>
                                 <li>
-                                    <Link to="/auth/register">Sign up</Link>
+                                    <NavLink activeStyle={activeStyle} to="/auth/register">Sign up</NavLink>
                                 </li>
                                 <li>
-                                    <Link to="/auth/login">Sign in</Link>
+                                    <NavLink activeStyle={activeStyle} to="/auth/login">Sign in</NavLink>
                                 </li>
                             </Fragment>
                     }

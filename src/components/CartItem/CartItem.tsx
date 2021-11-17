@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
-import './_cartItem.scss';
+import React from 'react';
+import classes from './CartItem.module.css';
 
 import { Item } from '../../store/cart-types';
 import Image from '../../UI/Image';
 import Button from '../../UI/Button';
-import useUpdateCartItem from '../hooks/react-query-hooks/cart/useUpdateCartItem';
-import useDeleteCartItem from '../hooks/react-query-hooks/cart/useDeleteCartItem';
+import useUpdateCartItem from '../../hooks/react-query-hooks/cart/useUpdateCartItem';
+import useDeleteCartItem from '../../hooks/react-query-hooks/cart/useDeleteCartItem';
+
+import { ImCross } from 'react-icons/im';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 type ChangeType = "INCREASE" | "DECREASE";
 
@@ -13,18 +16,17 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     const updateMutation = useUpdateCartItem();
     const deleteMutation = useDeleteCartItem();
 
-    useEffect(() => {
-        if (props.quantity === 0) {
-            deleteMutation.mutate(props._id)
-        }
-    }, [props.quantity, deleteMutation, props._id]);
+    if (props.quantity === 0) {
+        deleteMutation.mutate(props._id);
+    }
 
     const onChangeQuantityClickHandler = (type: ChangeType) => {
+        const currentItemQuantity = props.quantity;
         updateMutation.mutate({
             cartId: props._id,
             updatedCartItem: {
                 ...props,
-                quantity: type === 'INCREASE' ? props.quantity + 1 : props.quantity - 1
+                quantity: type === 'INCREASE' ? currentItemQuantity + 1 : currentItemQuantity - 1
             } 
         });
     }
@@ -32,40 +34,29 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
     
     return (
-        <div className="Item">
+        <div className={classes.item}>
+            <ImCross fontSize={30} cursor="pointer" onClick={onDeleteCartItemClickHandler} />
             <Image
-                imageSrc={props.img}
+                src={props.img}
                 alt="item"
+                className={classes.cartimg}
             />
-            <div className="Details">
-                <p className="Details__title">{props.title}</p>
-                <p className="Details__description">{props.description}</p>
-                <p className="Details__price">$ {props.price}</p>
-            </div>
-            <div className="Actions">
-                <div className="Actions__quantity">
-                    <Button
-                        type="button"
-                        className="Actions__quantity__manipulate"
-                        textContent="&#8593;"
-                        onClickHandler={() => onChangeQuantityClickHandler("INCREASE")}
-                    />
-                    <label htmlFor="qty">{props.quantity}</label>
-                    <Button
-                        type="button"
-                        className="Actions__quantity__manipulate"
-                        textContent="&#8595;"
-                        onClickHandler={() => onChangeQuantityClickHandler("DECREASE")}
-                    />
-                </div>
-                <Button
-                    type="button"
-                    className="Actions__btn"
-                    textContent="&#10060;"
-                    onClickHandler={onDeleteCartItemClickHandler}
+            <span className={classes.carttitle}>{props.title}</span>
+            <div className={classes.actions}>
+                <AiOutlinePlus
+                    fontSize={20} 
+                    className={classes.action}
+                    onClick={() => onChangeQuantityClickHandler("INCREASE")}
+                />
+                <span>{props.quantity}</span>
+                <AiOutlineMinus
+                    fontSize={20} 
+                    className={classes.action}
+                    onClick={() => onChangeQuantityClickHandler("DECREASE")}
                 />
             </div>
-        </div >
+            <span className={classes.cartprice}>$ {props.price}</span>
+        </div>
     )
 });
 

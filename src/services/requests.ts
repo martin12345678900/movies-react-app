@@ -1,4 +1,4 @@
-import { MovieArticle, MovieArticleComment, MovieArticleLikeFromUser } from '../components/Main/Details/types';
+import { MovieArticle, MovieArticleComment, MovieArticleLikeFromUser } from '../components/Details/types';
 import { UserAuth } from '../store/auth-slice.types';
 import * as api from './api';
 
@@ -29,7 +29,7 @@ export type ReturnCartType = {
 } & CartType;
 
 export async function getMovieArticles(): Promise<MovieArticle[]> {
-    return await api.get('/data/movies');
+    return await api.get("/data/movies");
 }
 
 export async function postMovieArticle(authToken: string, data: MovieArticleDataType): Promise<MovieArticle> {

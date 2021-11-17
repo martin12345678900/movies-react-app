@@ -19,11 +19,10 @@ const queryClient = new QueryClient({
         queries: {
             retry: 1,
             retryDelay: 1500,
-            staleTime: 10 * 1000
         },
         mutations: {
             onError: (error, _, rollback: Function) => {
-                console.log(`Current error is: ${error}`);
+                console.log(`Current error is: ${error.toString()}`);
                 if (rollback) {
                     rollback();
                 }

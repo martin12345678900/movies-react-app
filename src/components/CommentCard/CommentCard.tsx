@@ -1,5 +1,5 @@
 import React from 'react';
-import './_commentCard.scss';
+import classes from './CommentCard.module.css';
 
 import Button from '../../UI/Button';
 
@@ -11,17 +11,17 @@ type CommentCardProps = {
 
 const CommentCard: React.FC<CommentCardProps> = ({ content, author, deleteCurrentComment }) => {
     return (
-        <div className="CommentUser">
-            <p className="CommentContent">
+        <div className={classes.commentuser}>
+            <p className={classes.commentcontent}>
                 &#128173; {content}
                 {deleteCurrentComment &&
                     <Button
                         type="button"
-                        className="CommentDelete"
                         textContent="&#10006;"
-                        onClickHandler={deleteCurrentComment}
+                        onClick={deleteCurrentComment}
+                        className={classes.commentdelete}
                     />}
-                <i className="CommentName">- {author}</i>
+                <i className={classes.commentname}>- {author}</i>
             </p>
         </div>
     );

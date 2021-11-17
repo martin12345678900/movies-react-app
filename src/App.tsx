@@ -1,35 +1,47 @@
-import './App.scss';
+import './App.css';
+import React, { createContext, useState } from 'react';
 
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Home from './components/Main/Home/Home';
-import Register from './components/Main/Auth/Register/Register';
-import Login from './components/Main/Auth/Login/Login';
-import Create from './components/Main/Decorate/Create/Create';
-import Details from './components/Main/Details/Details';
-import Cart from './components/Main/Cart/Cart';
-import Checkout from './components/Main/Checkout/Checkout';
-import Edit from './components/Main/Decorate/Edit/Edit';
-import Filter from './components/Main/Filter/Filter';
-import Start from './components/Main/Start/Start';
+import Home from './components/Home/Home';
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
+import Create from './components/Decorate/Create';
+import Details from './components/Details/Details';
+import Cart from './components/Cart/Cart';
+import Edit from './components/Decorate/Edit';
+import { MovieArticle } from './components/Details/types';
 
 
 function App() {
+    const [searchParam, setSearchParam] = useState("");
+
     return (
         <Router>
-            <Header />
+            <Header setSearchParam={setSearchParam} />
             <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/movies-react-app" exact component={Start} />
-                <Route path="/auth/register" exact component={Register} />
-                <Route path="/auth/login" exact component={Login} />
-                <Route path="/movies/create" exact component={Create} />
-                <Route path="/movies/details/:movieId" exact component={Details} />
-                <Route path="/movies/edit/:movieId" exact component={Edit} />
-                <Route path="/filter" exact component={Filter} />
-                <Route path="/cart" exact component={Cart} />
-                <Route path="/checkout" exact component={Checkout} />
+                <Route path="/" exact>
+                    <Home searchParam={searchParam}/>
+                </Route>
+                <Route path="/auth/register" exact>
+                    <Register />
+                </Route>
+                <Route path="/auth/login" exact>
+                    <Login />
+                </Route>
+                <Route path="/movies/create" exact>
+                    <Create />
+                </Route>
+                <Route path="/movies/details/:movieId" exact>
+                    <Details />
+                </Route>
+                <Route path="/movies/edit/:movieId" exact>
+                    <Edit />
+                </Route>
+                <Route path="/cart" exact>
+                    <Cart />
+                </Route>
             </Switch>
         </Router>
     );

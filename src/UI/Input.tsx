@@ -1,17 +1,19 @@
-import React, { LegacyRef } from 'react';
+import React, { ChangeEventHandler, LegacyRef } from 'react';
 
 type InputProps = {
-    type?: "text" | "email" | "number" | "password";
+    type?: "password" | "email" | "text" | "number";
     placeholder: string;
-    name: string;
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
+    name?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>
     value?: string | number;
+    defaultValue?: string;
+    ref?: LegacyRef<HTMLInputElement>;
     className?: string;
-    defaultValue?: string | number;
-    ref?: LegacyRef<HTMLInputElement>
+    id?: string;
 }
 
-const Input: React.FC<InputProps> = React.forwardRef(({ type, placeholder, name, onChange, value, className, defaultValue }, ref) => {
+
+const Input: React.FC<InputProps> = React.forwardRef(({ type, placeholder, name, onChange, id, value, defaultValue, className }, ref) => {
     return (
         <input
             className={className}
@@ -21,6 +23,7 @@ const Input: React.FC<InputProps> = React.forwardRef(({ type, placeholder, name,
             onChange={onChange}
             value={value}
             defaultValue={defaultValue}
+            id={id}
             ref={ref}
         />
     );

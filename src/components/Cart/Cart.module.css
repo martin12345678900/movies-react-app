@@ -1,7 +1,4 @@
-@import "../../styles/variables";
-@import "../../styles/mixin";
-
-.CartSection {
+.cartsection {
   width: 100%;
   height: 100%;
   background: #d70040;
@@ -9,7 +6,7 @@
   padding: 2rem;
   justify-content: center;
 }
-.Cart {
+.cart {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -20,25 +17,28 @@
   border-radius: 8px;
 }
 
-.Summary {
+.summary {
   width: 40%;
   height: 45%;
   border: 2px solid black;
   border-radius: 8px;
   margin-left: 2rem;
   padding-left: 1rem;
-  &__title {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-  &__totalItems {
-    font-size: 2rem;
-    color: grey;
-  }
-  &__totalPrice {
-    font-size: 3rem;
-    font-weight: bold;
-    display: block;
-    margin-top: 1rem;
-  }
+}
+
+.summarytitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.summaryitems {
+  font-size: 2rem;
+  color: grey;
+}
+
+.summaryprice {
+  font-size: 3rem;
+  font-weight: bold;
+  display: block;
+  margin-top: 1rem;
 }

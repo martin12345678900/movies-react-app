@@ -1,8 +1,6 @@
 import CartItem from '../CartItem/CartItem';
 
-import Button from '../../UI/Button';
-
-import './_cart.scss';
+import classes from './Cart.module.css';
 import useGetCart from '../../hooks/react-query-hooks/cart/useGetCart';
 import Loader from '../Loader/Loader';
 
@@ -17,8 +15,8 @@ function Cart() {
     const totalPrice = cartItems.reduce((acc, item) => acc += Number(item.quantity) * Number(item.price), 0);
 
     return (
-        <section className="CartSection">
-            <div className={`Cart ${!cartItems.length && 'Cart--empty'}`}>
+        <section className={classes.cartsection}>
+            <div className={classes.cart}>
                 <h1 style={{ paddingLeft: ".5rem", fontSize: "2.8rem" }}>Shopping Cart</h1>
                 {
                     cartItems.map((cartItem) => {
@@ -28,10 +26,10 @@ function Cart() {
                         />
                     })
                 }
-                <div className="Summary">
-                    <h1 className="Summary__title">Sub total</h1>
-                    <span className="Summary__totalItems">Total Items: {totalQuantity}</span>
-                    <span className="Summary__totalPrice">Total Price: $ {totalPrice.toFixed(2)}</span>
+                <div className={classes.summary}>
+                    <h1 className={classes.summarytitle}>Sub total</h1>
+                    <span className={classes.summaryitems}>Total Items: {totalQuantity}</span>
+                    <span className={classes.summaryprice}>Total Price: $ {totalPrice.toFixed(2)}</span>
                 </div>
             </div>
         </section>

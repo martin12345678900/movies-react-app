@@ -27,15 +27,15 @@ const CartItem: React.FC<Item> = React.memo((props) => {
         });
     }
 
-    const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
+    const onDeleteCartItem = () => deleteMutation.mutate(props._id);
     
     if (props.quantity === 0) {
-        onDeleteCartItemClickHandler();
+        onDeleteCartItem();
     }
     
     return (
         <div className={classes.item}>
-            <ImCross fontSize={30} cursor="pointer" className={classes.carticon} onClick={onDeleteCartItemClickHandler} />
+            <ImCross fontSize={30} cursor="pointer" className={classes.carticon} onClick={onDeleteCartItem} />
             <Image
                 src={props.img}
                 alt="item"

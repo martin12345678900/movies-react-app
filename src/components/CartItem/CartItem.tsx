@@ -28,7 +28,7 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     }
 
     const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
-
+    
     if (props.quantity === 0) {
         onDeleteCartItemClickHandler();
     }

@@ -15,14 +15,7 @@ const useCreateCartItem = () => {
 
             const oldCartItems: CartType[] = queryClient.getQueryData(["cart", userId]);
             queryClient.setQueryData(["cart", userId], () => {
-                return [
-                    ...oldCartItems, {
-                        ...newCartItem,
-                        _id: new Date().toISOString(),
-                        _ownerId: new Date().toISOString(),
-                        _createdOn: new Date().toISOString()
-                    }
-                ]
+                return [...oldCartItems, newCartItem];
             });
 
             return () => queryClient.setQueryData(["cart", userId], oldCartItems);

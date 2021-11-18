@@ -22,12 +22,14 @@ function Details() {
     return (
         <section className={classes.details}>
             <div className={classes.container}>
-                <h1 className={classes.containerTitle}>Movie title: {movieArticleDetails.title}</h1>
-                <Image
-                    className={classes.containerImage}
-                    src={movieArticleDetails.img}
-                    alt="movie"
-                />
+                <div className={classes.containerheader}>
+                    <h1 className={classes.containerTitle}>Movie title: {movieArticleDetails.title}</h1>
+                    <Image
+                        className={classes.containerImage}
+                        src={movieArticleDetails.img}
+                        alt="movie"
+                    />
+                </div>
                 <div className={classes.containerDetails}>
                     <h3 className={classes.description}>Movie Description</h3>
                     <p className={classes.p}>

@@ -37,5 +37,6 @@
 @media all and (max-width: 750px) {
   .cardwrapper {
     display: block;
+    margin: 0;
   }
 }

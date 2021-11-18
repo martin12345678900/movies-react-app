@@ -33,6 +33,12 @@ const DetailsButtons: React.FC<DetailsButtonsType> = React.memo((props) => {
 
     const history = useHistory();
 
+    if (!isAuthenticated) { return <></>; };
+
+    if (isLoading) {
+        return <Loader />
+    }
+    
     const selectedItem = items.find(item => item.title === props.movieArticle.title);
 
     const onAddToCartClickHandler = () => {
@@ -41,12 +47,6 @@ const DetailsButtons: React.FC<DetailsButtonsType> = React.memo((props) => {
             quantity: 1,
         });
     };
-
-    if (!isAuthenticated) { return <></>; };
-
-    if (isLoading) {
-        return <Loader />
-    }
 
     return (
         <div className={classes.buttonsWrapper}>

@@ -68,6 +68,9 @@
   .navlist li a {
     font-size: 1.5rem;
   }
+  .search {
+    width: 60%;
+  }
 }
 
 @keyframes showNavLinks {

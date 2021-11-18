@@ -7,33 +7,22 @@
   align-items: center;
   padding: 2rem;
   height: 30%;
-  position: relative;
+  justify-content: space-between;
 }
 
 .cartimg {
   height: 100%;
   width: 25%;
-  position: absolute;
-  left: 10%;
 }
 
 .carttitle {
-  position: absolute;
-  left: 36%;
   font-size: 3rem;
   font-weight: 500;
 }
 
-.actions {
-  position: absolute;
-  left: 65%;
-}
-
 .cartprice {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: bold;
-  position: absolute;
-  left: 90%;
 }
 .action {
   border: 3px solid black;
@@ -44,4 +33,26 @@
 .actions span {
   font-size: 4.5rem;
   margin: 0 1.5rem;
+}
+
+@media all and (max-width: 800px) {
+  .item {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+  }
+  .cartimg {
+    width: 75%;
+    height: 55%;
+  }
+  .carttitle {
+    font-size: 2rem;
+  }
+  .cartprice {
+    font-size: 2.5rem;
+  }
+  .carticon {
+    height: 25px;
+    margin-bottom: 1rem;
+  }
 }

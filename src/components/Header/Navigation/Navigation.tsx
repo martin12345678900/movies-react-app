@@ -27,7 +27,7 @@ const Navigation: React.FC<{ setSearchParam: React.Dispatch<React.SetStateAction
     const toogleActiveState = useCallback(() => setIsActive(prevActiveState => !prevActiveState), []);
     const onLogout = () => dispatch(logoutThunk());
 
-    const cartItemsQuantity = cartItems?.reduce((acc: number, value: CartType) => acc += +value.quantity, 0);
+    const cartItemsQuantity = cartItems?.reduce((acc: number, value: CartType) => acc += +value.quantity, 0) || 0;
 
     return (
         <>

@@ -16,10 +16,6 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     const updateMutation = useUpdateCartItem();
     const deleteMutation = useDeleteCartItem();
 
-    if (props.quantity === 0) {
-        deleteMutation.mutate(props._id);
-    }
-
     const onChangeQuantityClickHandler = (type: ChangeType) => {
         const currentItemQuantity = props.quantity;
         updateMutation.mutate({
@@ -32,10 +28,14 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     }
 
     const onDeleteCartItemClickHandler = () => deleteMutation.mutate(props._id);
+
+    if (props.quantity === 0) {
+        onDeleteCartItemClickHandler();
+    }
     
     return (
         <div className={classes.item}>
-            <ImCross fontSize={30} cursor="pointer" onClick={onDeleteCartItemClickHandler} />
+            <ImCross fontSize={30} cursor="pointer" className={classes.carticon} onClick={onDeleteCartItemClickHandler} />
             <Image
                 src={props.img}
                 alt="item"
@@ -44,14 +44,16 @@ const CartItem: React.FC<Item> = React.memo((props) => {
             <span className={classes.carttitle}>{props.title}</span>
             <div className={classes.actions}>
                 <AiOutlinePlus
-                    fontSize={20} 
+                    fontSize={25} 
                     className={classes.action}
+                    cursor="pointer"
                     onClick={() => onChangeQuantityClickHandler("INCREASE")}
                 />
                 <span>{props.quantity}</span>
                 <AiOutlineMinus
-                    fontSize={20} 
+                    fontSize={25} 
                     className={classes.action}
+                    cursor="pointer"
                     onClick={() => onChangeQuantityClickHandler("DECREASE")}
                 />
             </div>

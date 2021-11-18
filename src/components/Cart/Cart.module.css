@@ -6,6 +6,7 @@
   padding: 2rem;
   justify-content: center;
 }
+
 .cart {
   display: flex;
   flex-direction: column;
@@ -41,4 +42,14 @@
   font-weight: bold;
   display: block;
   margin-top: 1rem;
+}
+
+@media all and (max-width: 800px) {
+  .cartsection {
+    padding: 0;
+    height: auto;
+  }
+  .summary {
+    width: 90%;
+  }
 }

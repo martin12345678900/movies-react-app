@@ -11,7 +11,7 @@ const useGetMovieArticles = (searchParam: string) => {
 
     return {
         ...queryResult,
-        data: useMemo(() => filter(queryResult.data, searchParam), [searchParam])
+        data: useMemo(() => filter(queryResult.data, searchParam), [searchParam, queryResult.data])
     }
 }
 

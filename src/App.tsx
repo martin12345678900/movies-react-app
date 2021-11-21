@@ -22,7 +22,7 @@ function App() {
             <Header setSearchParam={setSearchParam} />
             <Switch>
                 <Route path="/" exact>
-                    <Home searchParam={searchParam}/>
+                    <Home searchParam={searchParam} />
                 </Route>
                 <Route path="/auth/register" exact>
                     <Register />

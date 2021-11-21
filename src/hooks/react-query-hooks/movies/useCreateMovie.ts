@@ -16,7 +16,7 @@ const useCreateMovie = () => {
     const queryClient = useQueryClient();
 
     return useMutation<MovieArticle, Error, IMovieArticle>((newMovieArticle) => {
-        return postMovieArticle(authToken as string, newMovieArticle)
+        return postMovieArticle(authToken, newMovieArticle)
     }, {
         onMutate: (newMovieArticle) => {
             queryClient.cancelQueries(["movies"]);
@@ -25,12 +25,12 @@ const useCreateMovie = () => {
             if (!oldMovies) {
                 return;
             }
-            queryClient.setQueryData('movies', () => {
+            queryClient.setQueryData(['movies'], () => {
                 return [
                     ...oldMovies, {
                         ...newMovieArticle,
-                        _id: new Date().toString(),
-                        _ownerId: new Date().toString()
+                        _id: Math.random().toString(),
+                        _ownerId: Math.random().toString()
                     }
                 ];
             });

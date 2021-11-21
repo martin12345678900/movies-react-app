@@ -25,9 +25,9 @@ const useCreateComment = () => {
                     ...oldComments,
                     {
                         ...newComment,
-                        _id: new Date().toISOString(),
-                        _ownerId: new Date().toISOString(),
-                        _createdOn: new Date().toISOString()
+                        _id: Math.random().toString(),
+                        _ownerId: Math.random().toString(),
+                        _createdOn: Math.random().toString()
                     }
                 ];
             });

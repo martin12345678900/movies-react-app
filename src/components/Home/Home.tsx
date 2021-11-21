@@ -1,6 +1,5 @@
 // import { useState } from 'react';
-import React from 'react';
-import { ImSad } from 'react-icons/im';
+import React, { useCallback } from 'react';
 
 import MoviesForum from './MoviesForum/MoviesForum';
 import MovieCard from '../MovieCard/MovieCard';
@@ -8,16 +7,13 @@ import MovieCard from '../MovieCard/MovieCard';
 import classes from './Home.module.css';
 import useGetMovieArticles from '../../hooks/react-query-hooks/movies/useMovieArticles';
 import Loader from '../Loader/Loader';
-import { filter } from '../../utilities/filter';
 
 const Home: React.FC<{ searchParam: string; }> = ({ searchParam }) => {
-    const { data: movieArticles, isLoading } = useGetMovieArticles();
+    const { data: movieArticles, isLoading } = useGetMovieArticles(searchParam);
 
     if (isLoading) {
         return <Loader />
     }
-
-    const filtered = filter(movieArticles, searchParam);
 
     return (
         <>
@@ -27,7 +23,7 @@ const Home: React.FC<{ searchParam: string; }> = ({ searchParam }) => {
                     <h1 className={classes.heading}>Movie Articles</h1>
                     <div className={classes.cardwrapper}>
                         {
-                            filtered.map((movieArticle) =>
+                            movieArticles.map((movieArticle) =>
                                 <MovieCard key={movieArticle._id} {...movieArticle} />)
                         }
                     </div>

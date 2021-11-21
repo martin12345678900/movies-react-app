@@ -2,11 +2,16 @@ import { MovieArticle } from "../components/Details/types";
 
 
 export const filter = (movieArticles: MovieArticle[], searchParam: string): MovieArticle[] => {
-   return movieArticles.reduce((acc: MovieArticle[], value: MovieArticle) => {
-       const { title, description } = value;
+    return movieArticles.filter((movieArticle) => {
+        const { title, description } = movieArticle;
 
-       if (title.concat(description).toLowerCase().includes(searchParam.toLowerCase())) acc.push(value);
-
-       return acc;
-   }, []);
+        if (
+            title
+            .concat(description)
+            .toLowerCase()
+            .includes(searchParam.toLowerCase())
+        ) {
+            return movieArticle;
+        }
+    })
 }

@@ -16,7 +16,7 @@ const CartItem: React.FC<Item> = React.memo((props) => {
     const updateMutation = useUpdateCartItem();
     const deleteMutation = useDeleteCartItem();
 
-    const onChangeQuantityClickHandler = (type: ChangeType) => {
+    const onChangeQuantityClickHandler = (type: ChangeType): void => {
         const currentItemQuantity = props.quantity;
         updateMutation.mutate({
             cartId: props._id,
@@ -27,7 +27,7 @@ const CartItem: React.FC<Item> = React.memo((props) => {
         });
     }
 
-    const onDeleteCartItem = () => deleteMutation.mutate(props._id);
+    const onDeleteCartItem = (): void => deleteMutation.mutate(props._id);
     
     if (props.quantity === 0) {
         onDeleteCartItem();

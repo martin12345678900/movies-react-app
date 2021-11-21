@@ -31,7 +31,7 @@ const CommentSection: React.FC<CommentProps> = React.memo((props) => {
         createCommentMutation.mutate({
             movieId: props.id,
             author: userAuthState.username,
-            content: contentRef.current.value
+            content: contentRef?.current?.value
         });
         contentRef.current.value = '';
     };

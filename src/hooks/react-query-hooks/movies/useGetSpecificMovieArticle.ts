@@ -14,6 +14,7 @@ const useGetSpecificMovieArticle = (movieId: string) => {
                 return currentMovieArticle;
             }
         },
+        enabled: !!movieId
     });
 }
 

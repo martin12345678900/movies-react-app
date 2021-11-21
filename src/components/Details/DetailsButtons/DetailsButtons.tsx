@@ -24,8 +24,8 @@ type DetailsButtonsType = {
 const DetailsButtons: React.FC<DetailsButtonsType> = React.memo((props) => {
     const { userAuthState, isAuthenticated } = useAppSelector(state => state);
 
-    const { data: likes, isLoading } = useGetLikes(props.movieArticle._id);
-    const { data: items } = useGetCart();
+    const { data: likes, isLoading: isLikeLoading } = useGetLikes(props.movieArticle._id);
+    const { data: items, isLoading: isCartLoading } = useGetCart();
 
     const createLikeMutation = useCreateLike();
     const deleteMovieMutation = useDeleteMovie();
@@ -35,7 +35,7 @@ const DetailsButtons: React.FC<DetailsButtonsType> = React.memo((props) => {
 
     if (!isAuthenticated) { return <></>; };
 
-    if (isLoading) {
+    if (isLikeLoading || isCartLoading) {
         return <Loader />
     }
     

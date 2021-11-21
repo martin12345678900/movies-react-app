@@ -14,4 +14,8 @@ export const filter = (movieArticles: MovieArticle[], searchParam: string): Movi
             return movieArticle;
         }
     })
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9c762f610d77750bbe2e3dc8913e9f3aea97b9a4

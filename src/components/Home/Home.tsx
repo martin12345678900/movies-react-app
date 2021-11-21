@@ -10,8 +10,7 @@ import Loader from '../Loader/Loader';
 import { filter } from '../../utilities/filter';
 
 const Home: React.FC<{ searchParam: string; }> = ({ searchParam }) => {
-    const filterFn = useCallback((movieArticles) => filter(movieArticles, searchParam), [searchParam]);
-    const { data: movieArticles, isLoading } = useGetMovieArticles(filterFn);
+    const { data: movieArticles, isLoading } = useGetMovieArticles(searchParam);
 
     if (isLoading) {
         return <Loader />
